@@ -1,0 +1,29 @@
+{
+  "name": "blogapie",
+  "version": "0.0.0",
+  "description": "Blogging app",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Nolan Gajdascz",
+  "license": "GPL-3.0-only",
+  "workspaces": [
+    "backend",
+    "server"
+  ],
+  "devDependencies": {
+    "@eslint/compat": "^1.1.0",
+    "@eslint/js": "^9.6.0",
+    "concurrently": "^8.2.2",
+    "eslint": "^9.6.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-config-standard": "^17.1.0",
+    "eslint-plugin-n": "^16.6.2",
+    "eslint-plugin-promise": "^6.2.0",
+    "eslint-plugin-react": "^7.34.3",
+    "globals": "^15.8.0",
+    "prettier": "^3.3.2"
+  }
+}
