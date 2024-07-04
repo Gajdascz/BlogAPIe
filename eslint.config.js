@@ -23,7 +23,7 @@ export default [
     name: 'eslint.config/shared',
     files: ['**/*.{js,jsx}'],
     languageOptions: { ecmaVersion: 'latest', sourceType: 'module' },
-    ...standardJsConfig,
-    ...prettierConfig,
+    ...fixupConfigRules(standardJsConfig),
+    ...fixupConfigRules(prettierConfig)
   },
 ];
