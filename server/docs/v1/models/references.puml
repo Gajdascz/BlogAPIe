@@ -1,0 +1,32 @@
+@startuml
+
+!include definitions.puml
+
+!function $reaction_reference() !return "-[#DarkOliveGreen]->"
+!function $comment_reference() !return "-[#MidnightBlue]->"
+!function $post_reference() !return "-[#Purple]->"
+
+skinparam group 2
+
+title Model References
+
+together {
+  ' Reaction references ONE Post OR Comment
+  Reaction::targetId "0" $reaction_reference() "1" Post::_id #text:DarkGreen : Post._id
+  Reaction::targetId "0" $reaction_reference() "1" Comment::_id #text:DarkGreen : Comment._id
+  ' Reaction references ONE User (author)
+  Reaction::reactingUserId "0" $reaction_reference() "1" User::_id #text:DarkGreen : User._id
+}
+together {
+  ' Comment references ONE Post
+  Comment::postId "0"   $comment_reference() "1" Post::_id #text:DarkBlue : Post._id
+  ' Comment references ONE User (author) 
+  Comment::authorId "0" $comment_reference() "1" User::_id #text:DarkBlue : User._id
+}
+together {
+  ' Post references ONE Blog
+  Post::blogId "0" $post_reference() "1" Blog::_id #text:DarkOrchid : Blog._id
+  ' Post references ONE or MORE(few) User(s) (authors)
+  Post::authorId "0" $post_reference() "1..*" User::_id #text:DarkOrchid : User._id
+}
+@enduml

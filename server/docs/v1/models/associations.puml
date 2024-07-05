@@ -1,0 +1,34 @@
+@startuml
+
+!include definitions.puml
+
+!function $association_line() !return "-[#MidnightBlue]-"
+
+title Model Associations
+
+' Relationships
+' A Comment has 1 User (creator) 
+' A User has 0 or more comments
+User "1" $association_line() "0.." Comment #text:Purple : creates
+
+' A user has 0 or more Posts
+' A Post has 1 or more Users (creators)
+User "1.." $association_line() "0.." Post #text:Purple : creates
+
+' A Blog has 0 or more Posts 
+' A Post has 1 Blog
+Blog "1" $association_line() "0.." Post #text:Purple : has
+
+' A Reaction has 0 or more Posts 
+' A Post has 0 or more Reactions
+Post "0.." $association_line() "0.." Reaction #text:Purple : has
+
+' A Comment has 0 or more Reactions
+' A Reaction has 0 or more Comments 
+Comment "0.." $association_line() "0.." Reaction #text:Purple : has 
+
+' A Post has 0 or more Comments
+' A Comment has 1 Post
+Post "1" $association_line() "0.." Comment #text:Purple : has
+
+@enduml

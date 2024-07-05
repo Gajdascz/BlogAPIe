@@ -1,0 +1,59 @@
+@startuml
+
+!function $document_model($alias) !return "class " + $alias + "<< (M,SkyBlue) >> #LightSteelBlue"
+
+!function $association_line() !return "-[#MidnightBlue]-"
+
+!function $reference_line() !return "-[#DarkGreen]->"
+
+title Model Definitions
+
+$document_model(User) {
+  _id: ObjectId
+  --
+  +username: String
+  +firstname: String
+  +lastname: String
+  +email: String
+  +roles: [String]
+  == Virtual ==
+  +fullName: String
+  +url: String
+} 
+
+$document_model(Blog) {
+  _id: ObjectId
+  --
+  +category: String
+  == Virtual ==
+  +url: String
+}
+
+$document_model(Comment) {
+  _id: ObjectId
+  --
+  +postId: ObjectId
+  +body: String
+  +authorId: ObjectId
+}
+
+$document_model(Reaction) {
+  _id: ObjectId
+  --
+  +targetId: ObjectId
+  +reactionType: String
+  +reactingUserId: ObjectId
+}
+
+$document_model(Post) {
+  _id: ObjectId
+  --
+  +authorId: [ObjectId]
+  +blogId: ObjectId
+  +title: String
+  +body: String
+  == Virtual ==
+  +url: String
+}
+
+@enduml
