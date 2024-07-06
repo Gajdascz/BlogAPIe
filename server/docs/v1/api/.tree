@@ -1,0 +1,51 @@
+/api/v1
+│
+├── /users
+│   ├── GET: List all users
+│   ├── POST: Create new user
+│   └── /{userId}
+│       ├── GET: Read user by id
+│       ├── PUT: Update user by id
+│       ├── DELETE: Delete user by id
+│       ├── /posts
+│       │   └── GET: List all of a user's posts
+│       └── /comments
+│           └── GET: List all of a user's comments
+├── /blogs
+│   ├── GET: List all bl<U+0020>ogs
+│   ├── POST: Create new blog
+│   └── /{blogId}
+│       ├── GET: Read blog by id
+│       ├── PUT: Update blog by id
+│       ├── DELETE: Delete blog by id
+│       └── /posts
+│           └── GET: List all of a blog's posts
+├── /posts
+│   ├── GET: List all posts
+│   ├── POST: Create new post
+│   └── /{postId}
+│       ├── GET: Read post by id
+│       ├── PUT: Update post by id
+│       ├── DELETE: Delete post by id
+│       └── /comments
+│       │   └── GET: List all of a post's comments
+│       └── /reactions
+│           └── GET: List all of a post's reactions
+├── /comments
+│   ├── GET: List all comments
+│   ├── POST: Create new comment
+│   └── /{commentId}
+│       ├── GET: Read comment by id
+│       ├── PUT: Update comment by id
+│       ├── DELETE: Delete comment by id
+│       └── /replies
+│       │   └── GET: List all of a comment's replies
+│       └── /reactions
+│           └── GET: List all of a comment's reactions
+└── /reactions
+    ├── GET: List all reactions
+    ├── POST: Create new reaction
+    └── /{reactionId}
+        ├── GET: Read reaction by id
+        ├── PUT: Update reaction by id
+        └── DELETE: Delete reaction by id

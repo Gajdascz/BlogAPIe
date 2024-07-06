@@ -1,0 +1,140 @@
+@startuml
+
+!function $resource($alias,$path) !return "class " + $alias + "<<(R,LimeGreen) "+"/api/v1/"+$path+">>" + "#LightGreen"
+!function $seperator($text) !return "=="+"<U+0020>"+$text+"<U+0020>"+"=="
+
+!procedure $root_endpoints($postParams="inputData")
+  ├─ GET 
+  └─ POST($postParams)
+!endprocedure
+
+
+!procedure $targeted_endpoints($putParams="updatedData")
+  ├─ GET
+  ├─ DELETE 
+  └─ PUT($putParams)
+!endprocedure
+
+!$req_res_pipeline="#line:293A47;text:Black : <color DarkGreen> req <color 293A47>/<color Indigo> res "
+!$req_line="#line:DarkGreen;text:DarkGreen : req"
+!$res_line="#line:Indigo;text:Indigo : res"
+
+title =API Structure
+
+legend top left
+| <#008000>          |   req   | Client Request Object\n - Payload expected in req.body  |
+| <#4b0082>          |   res   | Server Response Object\n - JSON format|
+endlegend
+
+together {  
+
+  class Root << (A,LightYellow) API >> #LightYellow {
+    $seperator("Meta")
+    version: 0.0.0
+    path: domain.ext/api/v1
+    --
+    ==<color 293A47>processRequest
+  }
+
+  circle api/v1 #Black
+
+  class Response << (R, Orchid) JSON>> #Pink {
+    format: JSON
+    --
+    status: Number
+    message: String
+    errors: [] | [String]
+    body: Object
+  }
+}
+
+together {
+  $resource(Users,"users") {
+    =$seperator("Endpoints")
+    ==$seperator("/")
+      $root_endpoints()
+
+    ==$seperator("/{userId}")
+      $targeted_endpoints()
+
+    ==$seperator("/{userId}/posts")
+      └─ GET
+
+    ==$seperator("/{userId}/comments")
+      └─ GET
+  }
+  
+  $resource(Blogs,"blogs") {
+    =$seperator("Endpoints")
+    ==$seperator("/")
+      $root_endpoints()
+
+    ==$seperator("/{blogId}")
+      $targeted_endpoints()
+
+    ==$seperator("/{blogId}/posts")
+      └─ GET 
+  }
+
+  $resource(Posts,"posts") {
+    =$seperator("Endpoints")
+    ==$seperator("/")
+      $root_endpoints()
+
+    ==$seperator("/{postId}")
+      $targeted_endpoints()
+
+    ==$seperator("/{postId}/comments")
+      └─ GET
+
+    ==$seperator("/{postId}/reactions")
+      └─ GET
+  }
+
+  $resource(Comments,"comments") {
+    =$seperator("Endpoints")
+    ==$seperator("/")
+      $root_endpoints()
+
+    ==$seperator("/{commentId}")
+      $targeted_endpoints()
+
+    ==$seperator("/{commentId}/replies")
+      └─ GET
+
+    ==$seperator("/{commentId}/reactions")
+      └─ GET
+  }
+
+  $resource(Reactions,"reactions") {
+    =$seperator("Endpoints")
+    ==$seperator("/")
+      $root_endpoints()
+
+    ==$seperator("/{reactionId}")
+      $targeted_endpoints()
+  }
+}
+
+"api/v1" --> Root::processRequest $req_line
+Root::processRequest --> Response $res_line
+Response -> "api/v1" $res_line
+
+"api/v1" <--> Users $req_res_pipeline
+"api/v1" <--> Blogs $req_res_pipeline
+"api/v1" <--> Posts $req_res_pipeline
+"api/v1" <--> Comments $req_res_pipeline
+"api/v1" <--> Reactions $req_res_pipeline
+
+note bottom of Root
+  - Routes the request to the corresponding controller.
+  - Controller routes the result to the response formatter.
+  - Response formatter sends the response to the client
+
+If an error is encountered at any point, 
+execution halts and a response containing
+the errors in an array is sent to the client.
+endnote
+
+
+@enduml

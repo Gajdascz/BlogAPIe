@@ -2,56 +2,70 @@
 
 !function $document_model($alias) !return "class " + $alias + "<< (M,SkyBlue) >> #LightSteelBlue"
 
-!function $association_line() !return "-[#MidnightBlue]-"
+!procedure $id() 
+_id: ObjectId
+--
+!endprocedure
 
-!function $reference_line() !return "-[#DarkGreen]->"
+!procedure $timestamp()
++createdAt: Date
++updatedAt: Date
+!endprocedure
 
 title Model Definitions
 
 $document_model(User) {
-  _id: ObjectId
-  --
+  $id()
   +username: String
   +firstname: String
   +lastname: String
   +email: String
   +roles: [String]
+  $timestamp()
   == Virtual ==
   +fullName: String
   +url: String
 } 
 
 $document_model(Blog) {
-  _id: ObjectId
-  --
+  $id()
   +category: String
+  +tags: [String]
+  $timestamp()
   == Virtual ==
   +url: String
 }
 
 $document_model(Comment) {
-  _id: ObjectId
-  --
+  $id()
   +postId: ObjectId
+  +parentCommentId: ObjectId
   +body: String
   +authorId: ObjectId
+  $timestamp()
+  == Virtual ==
+  +url: String
 }
 
 $document_model(Reaction) {
-  _id: ObjectId
-  --
+  $id()
   +targetId: ObjectId
   +reactionType: String
   +reactingUserId: ObjectId
+  $timestamp()
+  == Virtual ==
+  +url: String
 }
 
 $document_model(Post) {
-  _id: ObjectId
-  --
+  $id()
   +authorId: [ObjectId]
   +blogId: ObjectId
   +title: String
   +body: String
+  +views: Number
+  +status: String
+  $timestamp()
   == Virtual ==
   +url: String
 }

@@ -7,28 +7,31 @@
 title Model Associations
 
 ' Relationships
-' A Comment has 1 User (creator) 
-' A User has 0 or more comments
+' A Comment references 1 User (creator) 
+' A User references 0 or more comments
 User "1" $association_line() "0.." Comment #text:Purple : creates
 
-' A user has 0 or more Posts
-' A Post has 1 or more Users (creators)
+' A user references 0 or more Posts
+' A Post references 1 or more Users (creators)
 User "1.." $association_line() "0.." Post #text:Purple : creates
 
-' A Blog has 0 or more Posts 
-' A Post has 1 Blog
-Blog "1" $association_line() "0.." Post #text:Purple : has
+' A Blog references 0 or more Posts 
+' A Post references 1 Blog
+Blog "1" $association_line() "0.." Post #text:Purple : references
 
-' A Reaction has 0 or more Posts 
-' A Post has 0 or more Reactions
-Post "0.." $association_line() "0.." Reaction #text:Purple : has
+' A Reaction references 0 or more Posts 
+' A Post references 0 or more Reactions
+Post "0.." $association_line() "0.." Reaction #text:Purple : references
 
-' A Comment has 0 or more Reactions
-' A Reaction has 0 or more Comments 
-Comment "0.." $association_line() "0.." Reaction #text:Purple : has 
+' A Comment references 0 or more Reactions
+' A Reaction references 0 or more Comments 
+Comment "0.." $association_line() "0.." Reaction #text:Purple : references 
 
-' A Post has 0 or more Comments
-' A Comment has 1 Post
-Post "1" $association_line() "0.." Comment #text:Purple : has
+' A Comment can reference 1 other Comment (parent/reply)
+Comment $association_line() "0..1" Comment #text:Purple : references
+
+' A Post references 0 or more Comments
+' A Comment references 1 Post
+Post "1" $association_line() "0.." Comment #text:Purple : references
 
 @enduml
