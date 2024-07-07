@@ -2,9 +2,19 @@
 
 !include definitions.puml
 
-!function $reaction_reference() !return "-[#DarkOliveGreen]-->"
-!function $comment_reference() !return "-[#MidnightBlue]-->"
-!function $post_reference() !return "-[#Purple]-->"
+!function $darkgreen_label($text) !return "#text:DarkGreen : "+$text
+!function $darkblue_label($text) !return "#text:DarkBlue : "+$text
+!function $darkorchid_label($text) !return "#text:DarkOrchid : "+$text
+!function $darkred_label($text) !return "#text:DarkRed : "+$text
+!function $darkorange_label($text) !return "#text:DarkOrange : "+$text
+
+
+!$reaction_reference= "-[#DarkOliveGreen]-->"
+!$comment_reference= "-[#MidnightBlue]-->"
+!$post_reference= "-[#Purple]-->"
+!$apikey_reference= "-[#Red]-->"
+!$profile_reference= "-[#Orange]-->"
+
 
 skinparam group 2
 
@@ -12,23 +22,31 @@ title Model References
 
 together {
   ' Reaction references ONE Post OR Comment
-  Reaction::targetId $reaction_reference() Post::_id #text:DarkGreen : Post._id
-  Reaction::targetId $reaction_reference() Comment::_id #text:DarkGreen : Comment._id
+  Reaction::targetId $reaction_reference Post::_id $darkgreen_label(Post._id)
+  Reaction::targetId $reaction_reference Comment::_id $darkgreen_label(Comment._id)
   ' Reaction references ONE User (author)
-  Reaction::reactingUserId $reaction_reference() User::_id #text:DarkGreen : User._id
+  Reaction::reactingUserId $reaction_reference User::_id $darkgreen_label(User._id)
 }
 together {
   ' Comment references ONE Post
-  Comment::postId $comment_reference() Post::_id #text:DarkBlue : Post._id
+  Comment::postId $comment_reference Post::_id $darkblue_label(Post._id)
   ' Comment references ONE Comment (parent/reply)
-  Comment::parentCommentId $comment_reference() Comment::_id #text:DarkBlue : Comment::_id 
+  Comment::parentCommentId $comment_reference Comment::_id $darkblue_label(Comment._id) 
   ' Comment references ONE User (author) 
-  Comment::authorId $comment_reference() User::_id #text:DarkBlue : User._id
+  Comment::authorId $comment_reference User::_id $darkblue_label(User._id)
 }
 together {
   ' Post references ONE Blog
-  Post::blogId $post_reference() Blog::_id #text:DarkOrchid : Blog._id
+  Post::blogId $post_reference Blog::_id $darkorchid_label(Blog._id)
   ' Post references ONE or MORE(few) User(s) (authors)
-  Post::authorId $post_reference() User::_id #text:DarkOrchid : User._id
+  Post::authorId $post_reference User::_id $darkorchid_label(User._id)
+}
+together {
+  ' APIKey references ONE User
+  APIKey::userId $apikey_reference User::_id $darkred_label(User._id)
+}
+together {
+  ' Profile references ONE User
+  Profile::userId $profile_reference User::_id $darkorange_label(User._id) 
 }
 @enduml

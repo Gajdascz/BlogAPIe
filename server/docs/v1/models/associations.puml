@@ -2,36 +2,45 @@
 
 !include definitions.puml
 
-!function $association_line() !return "-[#MidnightBlue]-"
+!function $purple_label($text) !return "#text:Purple : "+$text
+!$association_line="-[#MidnightBlue]-"
 
 title Model Associations
 
 ' Relationships
 ' A Comment references 1 User (creator) 
 ' A User references 0 or more comments
-User "1" $association_line() "0.." Comment #text:Purple : creates
+User "1" $association_line "*" Comment $purple_label(creates)
 
-' A user references 0 or more Posts
+' A User references 0 or more Posts
 ' A Post references 1 or more Users (creators)
-User "1.." $association_line() "0.." Post #text:Purple : creates
+User "1..*" $association_line "*" Post $purple_label(creates)
 
 ' A Blog references 0 or more Posts 
 ' A Post references 1 Blog
-Blog "1" $association_line() "0.." Post #text:Purple : references
+Blog "1" $association_line "*" Post $purple_label(references)
 
 ' A Reaction references 0 or more Posts 
 ' A Post references 0 or more Reactions
-Post "0.." $association_line() "0.." Reaction #text:Purple : references
+Post "*" $association_line "*" Reaction $purple_label(references)
 
 ' A Comment references 0 or more Reactions
 ' A Reaction references 0 or more Comments 
-Comment "0.." $association_line() "0.." Reaction #text:Purple : references 
+Comment "*" $association_line "*" Reaction $purple_label(references) 
 
-' A Comment can reference 1 other Comment (parent/reply)
-Comment $association_line() "0..1" Comment #text:Purple : references
+' A Comment references 0 or 1 Comment (parent/reply)
+Comment $association_line "0..1" Comment $purple_label(references)
 
 ' A Post references 0 or more Comments
 ' A Comment references 1 Post
-Post "1" $association_line() "0.." Comment #text:Purple : references
+Post "1" $association_line "*" Comment $purple_label(references)
+
+'An APIKey references 1 User
+'A User references 0 APIKeys
+APIKey "0" $association_line "1" User $purple_label(references)
+
+' A Profile references 1 User
+' A User references 0 Profiles
+Profile "0" $association_line "1" User $purple_label(references)
 
 @enduml

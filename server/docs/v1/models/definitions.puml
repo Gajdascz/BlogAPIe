@@ -1,7 +1,6 @@
 @startuml
 
 !function $document_model($alias) !return "class " + $alias + "<< (M,SkyBlue) >> #LightSteelBlue"
-
 !procedure $id() 
 _id: ObjectId
 --
@@ -14,18 +13,45 @@ _id: ObjectId
 
 title Model Definitions
 
+
 $document_model(User) {
   $id()
   +username: String
-  +firstname: String
-  +lastname: String
   +email: String
+  +password: String
   +roles: [String]
+  +recoveryQuestion: String
+  +recoveryAnswer: String
+  $timestamp()
+} 
+
+$document_model(Profile){
+  $id()
+  +userId: ObjectId
+  +firstName: String
+  +lastName: String
+  +bio: String
+  +settings: Object
   $timestamp()
   == Virtual ==
   +fullName: String
   +url: String
-} 
+}
+
+$document_model(APIKey) {
+  +_id: String
+  --
+  +userId: ObjectId
+  +status: String
+  +scopes: [String]
+  +totalCalls: Number
+  +allottedCalls: Number
+  +refreshInterval: String
+  +lastRefresh: Date
+  +lastUsedOn: Date
+  +terminatedOn: Date
+  $timestamp()
+}
 
 $document_model(Blog) {
   $id()

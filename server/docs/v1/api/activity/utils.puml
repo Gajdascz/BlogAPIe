@@ -1,0 +1,54 @@
+@startuml utils.puml
+
+!function $color_t($color,$text) !return "<color "+$color+">"+$text
+
+!procedure $neutral_action($text)
+#LightSteelBlue:$text;
+-[#MidnightBlue]->
+!endprocedure
+
+!procedure $success_action($text)
+-[#DarkGreen]->
+#PaleGreen:$text;
+-[#DarkGreen]->
+!endprocedure
+
+!procedure $send_err_action($err_code)
+-[#DarkRed]->;
+#Pink:Send Error Response to Client ($err_code);
+kill
+!endprocedure
+
+!procedure $input_received($text)
+#LightSteelBlue:$text Recieved;<<input>>
+-[#MidnightBlue]->
+!endprocedure
+
+
+!procedure $if_then($condition,$then_color,$then_text) 
+#Yellow:if($condition) then ($color_t($then_color,$then_text))
+!endprocedure
+
+!procedure $if_then_success($condition,$action_text)
+$if_then($condition,"DarkGreen","true")
+$success_action($action_text)
+!endprocedure
+
+!procedure $if_then_next($condition,$action_text)
+$if_then($condition,"DarkGreen","true")
+-[#DarkGreen]->
+#PaleGreen:$action_text;
+-[#DarkGreen]->
+!endprocedure
+
+
+
+
+!procedure $else_error($err_code="400")
+else($color_t("DarkRed","false"))
+  $send_err_action($err_code)
+!endprocedure
+
+
+
+@enduml

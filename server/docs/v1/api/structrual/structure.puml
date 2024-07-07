@@ -3,27 +3,23 @@
 !function $resource($alias,$path) !return "class " + $alias + "<<(R,LimeGreen) "+"/api/v1/"+$path+">>" + "#LightGreen"
 !function $seperator($text) !return "=="+"<U+0020>"+$text+"<U+0020>"+"=="
 
-!procedure $root_endpoints($postParams="inputData")
-  ├─ GET 
-  └─ POST($postParams)
-!endprocedure
-
-
-!procedure $targeted_endpoints($putParams="updatedData")
-  ├─ GET
-  ├─ DELETE 
-  └─ PUT($putParams)
-!endprocedure
-
 !$req_res_pipeline="#line:293A47;text:Black : <color DarkGreen> req <color 293A47>/<color Indigo> res "
 !$req_line="#line:DarkGreen;text:DarkGreen : req"
 !$res_line="#line:Indigo;text:Indigo : res"
 
 title =API Structure
 
-legend top left
-| <#008000>          |   req   | Client Request Object\n - Payload expected in req.body  |
-| <#4b0082>          |   res   | Server Response Object\n - JSON format|
+legend top right
+
+|= Color    |= Abbreviation |= Details |
+| <#008000> |   req         | Client Request Object\n - Payload expected in req.body  |
+| <#4b0082> |   res         | Server Response Object\n - JSON format|
+
+|= Indicator |= Access         |
+| 🔒         | Admin Only      |
+| 🔑         | Authorized Only |
+| 🌐         | Open            |
+
 endlegend
 
 together {  
@@ -52,67 +48,106 @@ together {
   $resource(Users,"users") {
     =$seperator("Endpoints")
     ==$seperator("/")
-      $root_endpoints()
+      ├─🔒 GET 
+      └─🔑 POST
 
     ==$seperator("/{userId}")
-      $targeted_endpoints()
+      ├─🔑 GET
+      ├─🔑 DELETE 
+      └─🔑 PUT
+    
+    ==$seperator("/{userId}/keys")
+       └─🔑 GET
 
     ==$seperator("/{userId}/posts")
-      └─ GET
+       └─🔑 GET
 
     ==$seperator("/{userId}/comments")
-      └─ GET
+       └─🔑 GET
   }
-  
+  $resource(APIKeys,"keys") {
+    =$seperator("Endpoints")
+    ==$seperator("/")
+      ├─🔒 GET 
+      └─🔑 POST
+
+    ==$seperator("/{keyId}")
+      ├─🔒 DELETE 
+      └─🔒 PUT
+  }
+  $resource(Profiles,"profiles"){
+    =$seperator("Endpoints")
+    ==$seperator("/")
+      └─🔑 GET
+
+    ==$seperator("/{username}")
+      ├─🔑 GET
+      ├─🔑 PUT
+      └─🔑 DELETE
+
+    ==$seperator("/{username}/public")
+       └─🌐|🔑 GET
+  }
+
   $resource(Blogs,"blogs") {
     =$seperator("Endpoints")
     ==$seperator("/")
-      $root_endpoints()
+      ├─🌐 GET 
+      └─🔑 POST
 
     ==$seperator("/{blogId}")
-      $targeted_endpoints()
+      ├─🌐 GET
+      ├─🔑 DELETE 
+      └─🔑 PUT
 
     ==$seperator("/{blogId}/posts")
-      └─ GET 
+       └─🌐 GET 
   }
 
   $resource(Posts,"posts") {
     =$seperator("Endpoints")
     ==$seperator("/")
-      $root_endpoints()
+      ├─🌐 GET 
+      └─🔑 POST
 
     ==$seperator("/{postId}")
-      $targeted_endpoints()
+      ├─🌐 GET
+      ├─🔑 DELETE 
+      └─🔑 PUT
 
     ==$seperator("/{postId}/comments")
-      └─ GET
+       └─🌐 GET
 
     ==$seperator("/{postId}/reactions")
-      └─ GET
+       └─🌐 GET
   }
 
   $resource(Comments,"comments") {
     =$seperator("Endpoints")
     ==$seperator("/")
-      $root_endpoints()
-
+      ├─🔒 GET 
+      └─🔑 POST
+    
     ==$seperator("/{commentId}")
-      $targeted_endpoints()
+      ├─🔑 DELETE 
+      └─🔑 PUT
 
     ==$seperator("/{commentId}/replies")
-      └─ GET
+       └─🌐 GET
 
     ==$seperator("/{commentId}/reactions")
-      └─ GET
+       └─🌐 GET
   }
 
   $resource(Reactions,"reactions") {
     =$seperator("Endpoints")
     ==$seperator("/")
-      $root_endpoints()
+      ├─🔒 GET 
+      └─🔑 POST
 
     ==$seperator("/{reactionId}")
-      $targeted_endpoints()
+      ├─🔑 DELETE 
+      └─🔑 PUT
   }
 }
 
@@ -121,6 +156,8 @@ Root::processRequest --> Response $res_line
 Response -> "api/v1" $res_line
 
 "api/v1" <--> Users $req_res_pipeline
+"api/v1" <--> APIKeys $req_res_pipeline
+"api/v1" <--> Profiles $req_res_pipeline
 "api/v1" <--> Blogs $req_res_pipeline
 "api/v1" <--> Posts $req_res_pipeline
 "api/v1" <--> Comments $req_res_pipeline
