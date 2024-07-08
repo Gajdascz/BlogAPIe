@@ -1,0 +1,34 @@
+@startuml 1_process-request.puml
+
+!include 0-initial-request.puml
+
+
+group ===Registration Request POST {
+  $recieve("Registration Data")
+  $process("Sanitize")
+  $process("Validate")
+  $if_then("validation successful?")
+    $process("Create User Document Model")
+    $if_then("user creation successful?")
+      $process("Create Profile Document Model")
+      $if_then("profile creation successful?")
+        $process("Hash Sensitive User Data")
+        $if_then("data hash successful?")
+          $process("Save Documents to DataBase")
+            $if_then("documents saved successfully?")
+              $end_or_continue()
+            $else_with_error("500","\nFailed to Save Documents to Database")
+            endif
+        $else_with_error("500","\nData Hash Failed")
+        endif
+      $else_with_error("500","\nProfile Creation Failed")
+      endif
+    $else_with_error("500","\nUser Creation Failed")
+    endif
+  $else_with_error("400","\nValidation Failed")
+  endif
+}
+
+(1)
+
+@enduml

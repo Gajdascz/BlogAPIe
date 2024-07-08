@@ -1,0 +1,19 @@
+@startuml 0_initial-request.puml
+
+!include utils.puml
+
+start
+
+group === Root {
+  $recieve("Client Request")
+  $if_then("valid endpoint?")
+    $process("")
+    $transition("Forward Request to Controller")
+  $else_with_error("404","\nInvalid Endpoint Requested")
+  endif
+}
+
+$connector(0)
+
+
+@enduml

@@ -1,0 +1,138 @@
+@startuml utils.puml
+
+!include ../../../colors.puml
+
+!startsub activity_style
+<style>
+  activityDiagram{
+    FontStyle Bold
+    LineThickness 1.5px
+
+    Legend {
+      FontStyle normal
+      
+    }
+    
+    Spot {
+      BackgroundColor LightCyan
+      LineThickness 2.25px
+      LineColor DarkCyan
+    }
+
+  }
+</style>
+!endsub
+
+!startsub activity_legend
+legend top left
+=Procedures
+|= **action**            |= **Description**                                            |= **Action/Label Color**  |= **Arrow Color**     |
+| **$request_received**  | Request is sent from the client and received by the server  | $lightsteelblue    | $midnightblue  |
+| **$transition**        | Interim (e.g., Router passes data to controller)            | $plum              | $indigo        |
+| **$process**           | When the server executes a process (e.g., Validation)       | $orangered         | $darkorange    |
+| **$success**           | Indicates success                                           | $palegreen         | $darkgreen     |
+| **$error**             | Indicates an error                                          | $pink              | $darkred       |
+
+|= **statement**         |= **Description**                |= **Default Action/Label Color**  |= **Default Arrow Color**  |
+| **$if_then**           | Start of if-then decision       | $yellow                    | $darkgreen          |
+| **$else_if**           | If another condition then       | $yellow                    | $darkgreen          |
+| **$else**              | When no condition is satisfied  | $pink                      | $darkred            |
+| **$else_with_error**   | Else with terminating error     | $pink                      | $darkred            |
+| **$error_kill**    | Terminating error               | $pink                      | $darkred            |
+| **$end_success**  | Terminate with success          | $palegreen                 | $darkgreen          |
+| **$end_or_continue**    | Concludes a open-ended diagram  | Combination                | Combination         |
+endlegend
+!endsub
+
+!function $color_t($color,$text) !return "<color "+$color+">"+$text
+
+!startsub activity_procedures
+' When an input is sent from the client and received by the server
+!procedure $recieve($text="Recieve Request")
+#lightsteelblue:$text;
+-[#midnightblue]->
+!endprocedure
+
+' When an iterim action is executed
+' Data being transferred within the server, eg. Router passes data to controller
+!procedure $transition($text)
+#plum:$text;
+-[#indigo]->
+!endprocedure
+
+' When the server executes a process
+' eg. Validation, 
+!procedure $process($text)
+#OrangeRed:$text;
+-[#darkorange]->
+!endprocedure
+
+' When the server executes a sucessful action
+!procedure $action_success($text)
+#PaleGreen:$text;
+-[#darkgreen]->
+!endprocedure
+
+' When the server executres an error action
+!procedure $error($text)
+#Pink:$text;
+-[#darkred]->
+!endprocedure
+
+' When the server terminates the flow and returns an error response to the client
+!procedure $error_kill($err_code,$info)
+-[#darkred]->
+#Pink:Send Error Response to Client ($err_code)$info;
+kill
+!endprocedure
+
+' When the server terminates the flow and returns an OK response to the client
+!procedure $end_success($status_code="200",$info="")
+#PaleGreen:Send OK Response to Client ($status_code)$info;
+end
+!endprocedure
+
+' If then statement
+' Defaults to "then" being the true/sucess path 
+!procedure $if_then($condition,$then_color="darkgreen",$then_text="true") 
+#yellow:if($condition) then ($color_t($then_color,$then_text))
+-[#$then_color]->
+!endprocedure
+
+' Else if statement
+!procedure $else_if($condition,$then_color="darkgreen",$then_text="true") 
+#yellow:elseif($condition) then ($color_t($then_color,$then_text))
+-[#$then_color]->
+!endprocedure
+
+' Else statement
+' Defaults to being the false/error path
+!procedure $else($label_text="false", $label_color="darkred")
+else($color_t($label_color,$label_text))
+-[#$label_color]->
+!endprocedure
+
+' Appends the $else statement with an error that terminates the flow
+!procedure $else_with_error($err_code="400", $info="")
+$else()
+  $error_kill($err_code,$info)
+!endprocedure
+
+!procedure $connector($number)
+($number);
+-[#DarkCyan]->
+!endprocedure
+
+' Use at the end of a flow (diagram) that can either terminate or continue on to another diagram (forward the request data to another internal process).
+'   - For example, after authenticating a user, you may either end the flow with a response (terminate),
+'     or continue processing with the authenticated user data.
+!procedure $end_or_continue($continue_action="Forward Request", $success_status_code="200", $info="")
+$if_then("terminate and send response?", "palegreen")
+  $end_success($success_status_code, $info)
+$else("false","indigo")
+  $transition($continue_action)
+endif
+!endprocedure
+!endsub
+
+@enduml
