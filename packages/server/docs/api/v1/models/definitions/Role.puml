@@ -1,0 +1,81 @@
+@startuml Role.puml
+
+!include ../utils.puml
+
+title Role
+
+$document_model("Role"){
+  $id()
+  name: String
+  scopes: Scopes
+  $timestamp()
+}
+Role::scopes *- Scopes #DarkSalmon
+
+package "Scopes" <<Rectangle>> #LightSalmon {
+
+  $embed_enum(User) { 
+    🌐createUser
+    🔒readAnyUser
+    🔑readOwnUser
+    🔒updateAnyUser
+    🔑updateOwnUser
+    🔒deleteAnyUser
+    🔑deleteOwnUser
+  }
+  $embed_enum(APIKey) {
+    🔑createAPIKey
+    🔒readAnyAPIkey
+    🔑readOwnAPIKey
+    🔒updateAnyAPIKey
+    🔑updateOwnAPIKey
+    🔒deleteAnyAPIKey
+  }
+  $embed_enum(Profile){
+    🌐createProfile
+    🔑readAnyProfile
+    🔑readOwnProfile
+    🔒updateAnyProfile
+    🔑updateOwnProfile
+    🔒deleteAnyProfile
+    🔑deleteOwnProfile
+  }
+  $embed_enum(Blog) {
+    🔒createBlog
+    🌐readBlog
+    🔒updateAnyBlog
+    🔒deleteAnyBlog
+  }
+  $embed_enum(Post){
+    🔑createPost
+    🌐readPost
+    🔒updateAnyPost
+    🔑updateOwnPost
+    🔒deleteAnyPost
+    🔑deleteOwnPost
+  }
+  $embed_enum(Comment){
+    🔑createComment
+    🌐readComment
+    🔒updateAnyComment
+    🔑updateOwnComment
+    🔒deleteAnyComment
+    🔑deleteOwnComment
+  }
+  $embed_enum(Reaction){
+    🔑createReaction
+    🌐readReaction
+    🔒updateAnyReaction
+    🔑updateOwnReaction
+    🔒deleteAnyReaction
+    🔑deleteOwnReaction
+  }
+  $embed_enum(Role){
+    🔒createRole
+    🔒readRole
+    🔒updateRole
+    🔒deleteRole
+  }
+}
+
+@enduml

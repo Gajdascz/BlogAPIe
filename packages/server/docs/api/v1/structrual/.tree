@@ -1,0 +1,76 @@
+Access Indicators:
+    🔒 - Admin Only 
+    🔑 - Authorization Required 
+    🌐 - Open 
+
+/api/v1
+├──/keys
+│  ├──🔒 GET: Read all api keys 
+│  ├──🔑 POST: Create new api key
+│  └──/{keyId}
+│     ├──🔒 PUT: Update api key by id 
+│     └──🔒 DELETE: Delete api key by id 
+├──/users
+│  ├──🔒 GET: Read all users 
+│  ├──🌐 POST: Create new user AND Profile
+│  └──/{userId}
+│     ├──🔑 GET: Read user by id
+│     ├──🔑 PUT: Update user by id
+│     ├──🔑 DELETE: Delete user by id
+│     ├──/keys
+|     │  └──🔑 GET: Read a user's full API key history 
+│     ├──/posts
+│     │  └──🔑 GET: Read all of a user's posts
+│     └──/comments
+│        └──🔑 GET: Read all of a user's comments
+├──/profiles
+│  ├──🔑 GET: Read all profiles
+│  └──/{username}
+│     ├──🔑 GET: Read profile by username
+│     ├──🔑 PUT: Update profile by username
+│     ├──🔑 DELETE: Delete profile by username
+│     └──/public
+│        └──🌐|🔑 GET: Read public profile by username
+├──/blogs
+│  ├──🌐 GET: Read all blogs
+│  ├──🔑 POST: Create new blog
+│  └──/{blogCategory}
+│     ├──🌐 GET: Read blog by category
+│     ├──🔑 PUT: Update blog by category
+│     ├──🔑 DELETE: Delete blog by category
+│     └──/posts
+│        └──🌐 GET: Read all of a blog's posts
+├──/posts
+│  ├──🌐 GET: Read all posts
+│  ├──🔑 POST: Create new post
+│  └──/{postId}
+│     ├──🌐 GET: Read post by id
+│     ├──🔑 PUT: Update post by id
+│     ├──🔑 DELETE: Delete post by id
+│     ├──/comments
+│     │  └──🌐 GET: Read all of a post's comments
+│     └──/reactions
+│        └──🌐 GET: Read all of a post's reactions
+├──/comments
+│  ├──🔒 GET: Read all comments
+│  ├──🔑 POST: Create new comment
+│  └──/{commentId}
+│     ├──🔑 PUT: Update comment by id
+│     ├──🔑 DELETE: Delete comment by id
+│     ├──/replies
+│     │  └──🌐 GET: Read all of a comment's replies
+│     └──/reactions
+│        └──🌐 GET: Read all of a comment's reactions
+├──/roles
+│  ├──🔒 GET: Read all roles
+│  ├──🔒 POST: Create new role
+│  └──/{roleId}
+│     ├──🔒 GET: Read role by id
+│     ├──🔒 PUT: update role by id
+│     └──🔒 DELETE: Delete role by id
+└──/reactions
+   ├──🔒 GET: Read all reactions
+   ├──🔑 POST: Create new reaction
+   └──/{reactionId}
+      ├──🔑 PUT: Update reaction by id
+      └──🔑 DELETE: Delete reaction by id

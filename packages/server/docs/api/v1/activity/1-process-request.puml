@@ -1,0 +1,16 @@
+@startuml 1_process-request.puml
+
+
+!include 0-initial-request.puml
+
+
+group ===Process Request {
+  $recieve()
+  $if_then("is the route proteced?","indigo")
+    $transition("Forward Request to Authentication")
+  $else("false","indigo")
+
+  endif
+}
+
+@enduml

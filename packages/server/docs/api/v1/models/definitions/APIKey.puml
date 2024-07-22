@@ -1,0 +1,31 @@
+@startuml APIKey.puml
+
+!include ../utils.puml
+
+title APIKey
+
+$embed_object("Usage") {
+  totalCalls: Number
+  lastUsedOn: Date 
+}
+
+$embed_object("Qutoa") {
+  allotedCalls: Number
+  refreshInterval: Date 
+  lastRefresh: Date
+}
+
+
+$document_model(APIKey) {
+  _id: String<<hash>>
+  --
+  userId: ObjectId
+  status: String
+  usage: Usage
+  quota: Qutoa
+  terminatedOn: Date
+  $timestamp()
+}
+APIKey::usage *- Usage #darkslateblue
+APIKey::quota *- Qutoa #darkslateblue
+@enduml

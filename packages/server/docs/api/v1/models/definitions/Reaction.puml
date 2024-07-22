@@ -1,0 +1,17 @@
+@startuml Reaction.puml
+
+!include ../utils.puml
+
+title Reaction
+
+$document_model(Reaction) {
+  $id()
+  type: String
+  targetId: ObjectId
+  reactingUserId: ObjectId
+  $timestamp()
+  == Virtual ==
+  url: String
+}
+
+@enduml

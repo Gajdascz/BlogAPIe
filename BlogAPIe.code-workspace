@@ -1,7 +1,27 @@
 {
   "folders": [
     { "path": "./", "name": "root" },
-    { "path": "./server", "name": "server" },
-    { "path": "./frontend", "name": "frontend" }
-  ]
+    { "path": "./packages/server", "name": "server" },
+    { "path": "./packages/client", "name": "client" },
+    { "path": "./packages/libs", "name": "libs" },
+  ],
+  "settings": {
+    "files.exclude": {
+      "**/.git": true,
+      "**/.svn": true,
+      "**/.hg": true,
+      "**/CVS": true,
+      "**/.DS_Store": true,
+      "**/Thumbs.db": true,
+      "**/node_modules": true,
+    },
+    "vsicons.associations.files": [
+      {
+        "icon": "tsconfig",
+        "extensions": ["tsconfig.blogreader.json","tsconfig.blogwriter.json","tsconfig.server.json","tsconfig.wJSDoc.json"],
+        "filename": true,
+        "format": "svg",
+      },
+    ]
+  },
 }

@@ -1,0 +1,18 @@
+@startuml Comment.puml
+
+!include ../utils.puml
+
+title Comment
+
+$document_model(Comment) {
+  $id()
+  authorId: ObjectId
+  postId: ObjectId
+  parentCommentId: ObjectId
+  body: String
+  $timestamp()
+  == Virtual ==
+  url: String
+}
+
+@enduml

@@ -1,0 +1,15 @@
+@startuml Blog.puml
+
+!include ../utils.puml
+
+title Blog
+
+$document_model(Blog) {
+  $id()
+  category: String
+  $timestamp()
+  == Virtual ==
+  url: String
+}
+
+@enduml

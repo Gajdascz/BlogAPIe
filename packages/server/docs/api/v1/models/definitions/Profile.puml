@@ -1,0 +1,26 @@
+@startuml
+
+!include ../utils.puml
+
+title Profile
+
+
+$embed_object("Name") {
+  first: String
+  last: String
+}
+
+$document_model(Profile){
+  $id()
+  userId: ObjectId
+  name: Name
+  bio: String
+  settings: Object
+  $timestamp()
+  == Virtual ==
+  fullName: String
+  url: String
+}
+Profile::name *- Name #DarkSlateBlue
+
+@enduml

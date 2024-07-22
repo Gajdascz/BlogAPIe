@@ -1,0 +1,24 @@
+@startuml all.puml
+
+
+!include APIKey.puml 
+!include Blog.puml
+!include Comment.puml
+!include Post.puml
+!include Profile.puml
+!include Reaction.puml
+!include Role.puml
+!include User.puml
+
+title All API Resources
+
+legend top left
+|= Symbol        |= Description |
+| _id            | Mongoose Model identifier, uniquely identifies each document in a collection. |
+| ObjectId       | A reference to a separate Mongoose Model's _id.                               |
+| String<<hash>> | Indicates that the stored string has been hashed.                             |
+endlegend
+
+
+
+@enduml

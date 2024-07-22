@@ -1,0 +1,53 @@
+@startuml references.puml
+
+!include definitions/all.puml
+
+skinparam {
+  ArrowFontStyle Bold
+}
+
+
+!procedure $reference($from,$to,$color,$label,$ext="-")
+$from -[#$color]$ext> $to : <color %darken($color,50)>$label
+!endprocedure
+
+title Model References
+
+remove <<embed object>>
+remove Scopes
+
+together {
+  ' User references ONE Role
+  $reference("User::roleId","Role::_id",darkgoldenrod,Role._id,"")
+}
+
+together {
+  ' Reaction references ONE Post OR Comment
+  $reference("Reaction::targetId","Comment::_id",darkgreen,Comment._id,"--")
+  $reference("Reaction::targetId","Post::_id",darkgreen,Post._id)
+  ' Reaction references ONE User (author)
+  $reference("Reaction::reactingUserId","User::_id",darkgreen,User._id)
+}
+together {
+  ' Comment references ONE Post
+  $reference("Comment::postId","Post::_id",darkblue,Post._id)
+  ' Comment references ONE Comment (parent/reply)
+  $reference("Comment::parentCommentId","Comment::_id",darkblue,Comment._id)
+  ' Comment references ONE User (author) 
+  $reference("Comment::authorId","User::_id",darkblue,User._id)
+}
+together {
+  ' Post references ONE Blog
+  $reference("Post::blogId","Blog::_id",darkorchid,Blog._id)
+  ' Post references ONE or MORE(few) User(s) (authors)
+  $reference("Post::authorId","User::_id",darkorchid,User._id)
+}
+together {
+  ' APIKey references ONE User
+  $reference("APIKey::userId","User::_id",darkred,User._id)
+}
+together {
+  ' Profile references ONE User
+  $reference("Profile::userId","User::_id",darkorange,User._id)
+}
+@enduml

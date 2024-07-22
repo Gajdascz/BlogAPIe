@@ -1,0 +1,9 @@
+{
+  "files": [],
+  "includes": [],
+  "references": [
+    {"path": "./packages/server/tsconfig.server.json" },
+    {"path": "./packages/client/BlogReader/tsconfig.blogreader.json" },
+    {"path": "./packages/client/BlogWriter/tsconfig.blogwriter.json" }
+  ],
+}

@@ -1,0 +1,24 @@
+@startuml User.puml
+
+!include ../utils.puml
+
+title User Model
+
+$embed_object("Recovery") {
+  question: String
+  answer: String<<hash>>
+}
+
+
+$document_model(User) {
+  $id()
+  username: String
+  email: String
+  password: String<<hash>>
+  roleId: objectId
+  recovery: Recovery
+  $timestamp()
+} 
+User::Recover *- Recovery #darkslateblue
+
+@enduml

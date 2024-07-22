@@ -1,0 +1,20 @@
+@startuml Post.puml
+
+!include ../utils.puml
+
+title Post
+
+$document_model(Post) {
+  $id()
+  authorId: [ObjectId]
+  blogId: ObjectId
+  title: String
+  body: String
+  views: Number
+  status: String
+  $timestamp()
+  == Virtual ==
+  url: String
+}
+
+@enduml

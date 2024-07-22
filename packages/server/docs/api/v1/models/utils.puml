@@ -1,0 +1,17 @@
+@startuml Model Utils
+
+!function $document_model($alias) !return "class " + $alias + "<< (M,SkyBlue) >> #LightSteelBlue"
+!procedure $id() 
+_id: ObjectId
+--
+!endprocedure
+
+!function $embed_object($alias) !return "class " +$alias + "<< (e,slateblue) embed object>> #skyblue"
+!function $embed_enum($alias) !return "enum " +$alias + " << enumeration >> #bisque"
+
+!procedure $timestamp()
+createdAt: Date
+updatedAt: Date
+!endprocedure
+
+@enduml
