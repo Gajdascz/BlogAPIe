@@ -1,12 +1,11 @@
 {
   "compilerOptions": {
-    "rootDir": ".",
     "pretty": true, // Stylizes errors and messages using color and context.
     "lib": ["ESNext"], // Specify a set of bundled library declaration files that describe the target runtime environment.
     "target": "ESNext", // Specify the JavaScript language version for emitted JavaScript and include compatible library declarations.
-    "module": "NodeNext",// Specify what module code is generated.
+    "module": "NodeNext", // Specify what module code is generated.
     "moduleResolution": "NodeNext", //Specify how TypeScript looks up a file from a given module specifier.
-    "declaration": true,  // Generates a d.ts file for every TS or JS file inside the project.
+    "declaration": true, // Generates a d.ts file for every TS or JS file inside the project.
     "declarationMap": true, // Generates a source map for d.ts files which map back to the original .ts source file.
     "sourceMap": true, // Enables generation of sourcemap files which allow powerful debugging enhancements.
     "composite": true, // Enforces constraints which allow build tools to determine if a project has been built yet. (Used for project references)
@@ -22,7 +21,9 @@
     "noImplicitReturns": true, // Ensures all code paths in a function return a value.
     "forceConsistentCasingInFileNames": true, // Disallows inconsistently-cased references to the same file.
     "resolveJsonModule": true, // Allows import of .json files as modules.
-    "esModuleInterop":true, // Emit additional JavaScript to ease support for importing CommonJS modules. 
-    "types": [], // Defines what visible @types from installed packages are used in compilation. 
-  }
+    "esModuleInterop": true, // Emit additional JavaScript to ease support for importing CommonJS modules.
+    "types": [] // Defines what visible @types from installed packages are used in compilation.
+  },
+  "include": ["packages/**/*"],
+  "exclude": ["node_modules"]
 }

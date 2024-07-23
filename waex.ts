@@ -17,7 +17,7 @@ const waex = new WatchExec({
     indicators: [],
   },
   watcher: {
-    paths: ['./packages/server/**/*.{ts,js}'],
+    paths: ['./packages/**/*.{ts,js}'],
   },
   commands: [
     {

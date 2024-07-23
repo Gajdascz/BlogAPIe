@@ -10,7 +10,10 @@
     "npm": ">=10.8.1"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start:waex": "tsx waex.ts",
+    "start:tscw": "tsc --watch",
+    "start:dev": "concurrently --prefix none \"npm:start:waex\" \"npm:start:tscw\""
   },
   "author": "Nolan Gajdascz",
   "license": "GPL-3.0-only",
@@ -22,13 +25,16 @@
     "@eslint/js": "^9.6.0",
     "@types/eslint__js": "^8.42.3",
     "@types/node": "^20.14.10",
+    "@typescript-eslint/eslint-plugin": "^7.17.0",
+    "@typescript-eslint/parser": "^7.17.0",
     "concurrently": "^8.2.2",
-    "eslint": "^9.6.0",
+    "eslint": "^9.7.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-jsdoc": "^48.7.0",
     "eslint-plugin-n": "^16.6.2",
     "eslint-plugin-promise": "^6.2.0",
-    "eslint-plugin-react": "^7.34.3",
+    "eslint-plugin-react": "^7.35.0",
+    "eslint-plugin-tsdoc": "^0.3.0",
     "eslint-plugin-vitest": "^0.5.4",
     "globals": "^15.8.0",
     "jsdoc": "^4.0.3",
@@ -36,8 +42,10 @@
     "stylelint": "^16.6.1",
     "stylelint-config-standard": "^36.0.1",
     "tsx": "^4.16.2",
+    "typedoc": "^0.26.5",
     "typescript": "^5.5.3",
     "typescript-eslint": "^7.16.0",
-    "waex": "^0.1.2"
+    "waex": "^0.1.4",
+    "yup": "^1.4.0"
   }
 }

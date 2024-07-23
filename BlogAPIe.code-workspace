@@ -18,10 +18,14 @@
     "vsicons.associations.files": [
       {
         "icon": "tsconfig",
-        "extensions": ["tsconfig.blogreader.json","tsconfig.blogwriter.json","tsconfig.server.json","tsconfig.wJSDoc.json"],
+        "extensions": [
+          "tsconfig.blogreader.json",
+          "tsconfig.blogwriter.json",
+          "tsconfig.server.json",
+        ],
         "filename": true,
         "format": "svg",
       },
-    ]
+    ],
   },
 }
