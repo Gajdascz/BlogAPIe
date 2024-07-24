@@ -10,7 +10,7 @@
     "npm": ">=10.8.1"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "vitest",
     "start:waex": "tsx waex.ts",
     "start:tscw": "tsc --watch",
     "start:dev": "concurrently --prefix none \"npm:start:waex\" \"npm:start:tscw\""
@@ -45,6 +45,7 @@
     "typedoc": "^0.26.5",
     "typescript": "^5.5.3",
     "typescript-eslint": "^7.16.0",
+    "vitest": "^2.0.4",
     "waex": "^0.1.4",
     "yup": "^1.4.0"
   }

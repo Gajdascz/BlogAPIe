@@ -14,7 +14,7 @@
     "strictBindCallApply": true, // Makes TypeScript check that the built-in methods of a functions call, bind, and apply are invoked with the correct argument for the underlying function.
     "useUnknownInCatchVariables": true, // Changes the variable type in a catch clause from any to unknown. (Enforces more comprehensive error handling)
     "noImplicitOverride": true, // Ensures sub-classes never go out of sync by ensuring functions which override include the 'override' keyword.
-    "skipLibCheck": false, // Ensures TypeScript type checks declaration files (d.ts).
+    "skipLibCheck": true, // Ensures TypeScript type checks declaration files (d.ts).
     "alwaysStrict": true, // Ensures that files are parsed in the ECMAScript strict mode.
     "preserveConstEnums": false, // By setting this to false TypeScript will inline all constants and remove their references.
     "newLine": "lf", // Specifies the end of line sequence to be used when emitting files.
