@@ -3,8 +3,8 @@
   "includes": [],
   "references": [
     { "path": "./packages/server/tsconfig.json" },
-    { "path": "./packages/client/BlogReader/tsconfig.json" },
-    { "path": "./packages/client/BlogWriter/tsconfig.json" },
-    { "path": "./packages/libs/blogAPIeCore/tsconfig.json" }
+    { "path": "./packages/client/reader/tsconfig.json" },
+    { "path": "./packages/client/writer/tsconfig.json" },
+    { "path": "./packages/libs/shared/tsconfig.json" }
   ]
 }

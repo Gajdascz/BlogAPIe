@@ -1,0 +1,35 @@
+{
+  "name": "@blogapie/shared",
+  "version": "0.1.0",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist/**/*"
+  ],
+  "type": "module",
+  "engines": {
+    "node": ">=20.13.1",
+    "npm": ">=10.8.2"
+  },
+  "scripts": {
+    "test": "vitest",
+    "format": "prettier --write ./",
+    "build:ts": "tsc",
+    "build:typedoc": "typedoc ./src",
+    "build:all": "npm run format && npm run build:ts && npm run build:typedoc",
+    "patch": "npm run build:all && git add . && git commit && npm version patch && git push origin main && npm publish --verbose"
+  },
+  "keywords": [],
+  "author": "Nolan Gajdascz",
+  "license": "GPL-3.0-only",
+  "description": "Library that provides fundamental data to blogapie apps",
+  "dependencies": {
+    "http-status-codes": "^2.3.0"
+  },
+  "homepage": "https://github.com/Gajdascz/BlogAPIe/tree/main/packages/libs/shared",
+  "repository": {
+    "type": "github",
+    "url": "https://github.com/Gajdascz/BlogAPIe",
+    "directory": "/packages/libs/shared"
+  }
+}

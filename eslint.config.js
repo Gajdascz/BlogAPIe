@@ -37,10 +37,10 @@ export default tseslint.config(
         project: [
           'packages/libs/*/tsconfig.json',
           'packages/client/*/tsconfig.json',
-          'packages/server/tsconfig.json'
+          'packages/server/tsconfig.json',
         ],
         tsconfigRootDir: import.meta.dirname,
-      }
+      },
     },
     plugins: {
       '@typescript-eslint': tseslint.plugin,
