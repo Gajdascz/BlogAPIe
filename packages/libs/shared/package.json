@@ -29,7 +29,7 @@
   "homepage": "https://github.com/Gajdascz/BlogAPIe/tree/main/packages/libs/shared",
   "repository": {
     "type": "github",
-    "url": "https://github.com/Gajdascz/BlogAPIe",
+    "url": "git+https://github.com/Gajdascz/BlogAPIe.git",
     "directory": "/packages/libs/shared"
   }
 }
