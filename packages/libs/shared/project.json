@@ -1,0 +1,9 @@
+{
+  "targets": {
+    "format": {},
+    "lint": {},
+    "tsc": {},
+    "typedoc": {},
+    "build": {}
+  }
+}
