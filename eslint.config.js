@@ -19,7 +19,7 @@ export default tseslint.config(
       '**/*.puml',
       '**/*LICENSE',
       '**/*.css',
-      '**/docs/**'
+      '**/docs/**',
     ],
   },
   eslint.configs.recommended,
@@ -31,15 +31,11 @@ export default tseslint.config(
   },
   {
     name: 'typescript',
-    files: ['packages/**/*.{ts,tsx}'],
+    files: ['waex.ts', 'packages/**/*.{ts,tsx}'],
     languageOptions: {
       parser: tseslint.parser,
       parserOptions: {
-        project: [
-          'packages/libs/*/tsconfig.json',
-          'packages/client/*/tsconfig.json',
-          'packages/server/tsconfig.json',
-        ],
+        project: true,
         tsconfigRootDir: import.meta.dirname,
       },
     },

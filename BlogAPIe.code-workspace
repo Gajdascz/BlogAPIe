@@ -6,6 +6,7 @@
     { "path": "./packages/libs", "name": "libs" },
   ],
   "settings": {
+    "typescript.tsdk": "node_modules/typescript/lib",
     "files.exclude": {
       "**/.git": true,
       "**/.svn": true,
@@ -15,17 +16,5 @@
       "**/Thumbs.db": true,
       "**/node_modules": true,
     },
-    "vsicons.associations.files": [
-      {
-        "icon": "tsconfig",
-        "extensions": [
-          "tsconfig.blogreader.json",
-          "tsconfig.blogwriter.json",
-          "tsconfig.server.json",
-        ],
-        "filename": true,
-        "format": "svg",
-      },
-    ],
   },
 }

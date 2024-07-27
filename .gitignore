@@ -129,5 +129,12 @@ dist
 .yarn/install-state.gz
 .pnp.*
 
+tmp/
 
+.vscode/
 .vscode
+
+.nx
+.nx/cache
+.nx/workspace-data
+

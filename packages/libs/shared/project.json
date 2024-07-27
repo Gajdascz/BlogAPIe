@@ -1,5 +1,23 @@
 {
+  "name": "@blogapie/shared",
   "targets": {
+    "test": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "npx vitest run",
+        "args": [
+          "--dir={projectRoot}/src/tests",
+          "--coverage.enabled=true",
+          "--coverage.provider=v8",
+          "--coverage.reportsDirectory=./coverage",
+          "--coverage.clean=true",
+          "--coverage.include={projectRoot}/src/**/*.{ts,js,tsx,jsx}",
+          "--coverage.exclude=**/types.ts/**",
+          "--coverage.exclude=**/tests/**"
+        ]
+      },
+      "cache": true
+    },
     "format": {},
     "lint": {},
     "tsc": {},

@@ -1,8 +1,8 @@
 // Blog Module
-export { BLOG_CATEGORY_CFG, blogCategory } from './blog/index.js';
+export { BLOG_CATEGORY_CFG, blogCategory } from './data/blog/index.js';
 
 // CommentModule
-export { COMMENT_BODY_CFG, commentBody } from './comment/index.js';
+export { COMMENT_BODY_CFG, commentBody } from './data/comment/index.js';
 
 // API Module
 export {
@@ -12,12 +12,12 @@ export {
   API_KEY_STATUS_CFG,
   apiKeyStatus,
   apiResponseStatus,
-} from './api/index.js';
+} from './data/api/index.js';
 export type {
   APIKeyStatus,
   APIResponse,
   APIResponseStatus,
-} from './api/index.js';
+} from './data/api/index.js';
 
 // Post Module
 export {
@@ -29,8 +29,8 @@ export {
   postBody,
   postStatus,
   postTitle,
-} from './post/index.js';
-export type { PostStatus } from './post/index.js';
+} from './data/post/index.js';
+export type { PostStatus } from './data/post/index.js';
 
 // Profile Module
 export {
@@ -40,11 +40,11 @@ export {
   lastName,
   profile,
   profileBio,
-} from './profile/index.js';
+} from './data/profile/index.js';
 
 // Reaction Module
-export { REACTIONS, REACTION_CFG, reaction } from './reaction/index.js';
-export type { Reaction } from './reaction/index.js';
+export { REACTIONS, REACTION_CFG, reaction } from './data/reaction/index.js';
+export type { Reaction } from './data/reaction/index.js';
 
 // User Module
 export {
@@ -63,5 +63,5 @@ export {
   role,
   user,
   username,
-} from './user/index.js';
-export type { RecoveryQuestion, Role } from './user/index.js';
+} from './data/user/index.js';
+export type { RecoveryQuestion, Role } from './data/user/index.js';

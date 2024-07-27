@@ -1,6 +1,6 @@
 import { WatchExec } from 'waex';
 
-const waex = new WatchExec({
+new WatchExec({
   debounceRate: 300,
   limitProcessing: true,
   logger: {
