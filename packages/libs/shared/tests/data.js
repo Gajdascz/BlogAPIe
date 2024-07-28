@@ -7,8 +7,8 @@ import {
   POST_BODY_CFG,
   POST_TITLE_CFG,
   COMMENT_BODY_CFG,
-} from '..';
-import { NAME_CFG } from '..';
+} from '../src';
+import { NAME_CFG } from '../src';
 
 const EMAILS = {
   // https://en.wikipedia.org/wiki/Email_address#Invalid_email_addresses

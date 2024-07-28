@@ -19,36 +19,12 @@
       }
     }
   ],
-  "targetDefaults": {
-    "tsc": {
-      "executor": "@nx/js:tsc",
-      "outputs": ["{options.outputPath}"],
-      "options": {
-        "main": "{projectRoot}/src/index.ts",
-        "outputPath": "{projectRoot}/dist",
-        "tsConfig": "{projectRoot}/tsconfig.json"
-      },
-      "cache": true
-    },
-    "build": {
-      "executor": "nx:run-commands",
-      "options": {
-        "commands": [
-          "nx format {projectName}",
-          "nx lint {projectName}",
-          "nx test {projectName}",
-          "nx tsc {projectName}"
-        ],
-        "parallel": false
-      },
-      "cache": true
-    }
-  },
   "release": {
     "projectsRelationship": "independent",
     "projects": ["packages/libs/*", "packages/client/*", "packages/server"],
     "releaseTagPattern": "{projectName}@{version}",
     "version": {
+      "preVersionCommand": "npx nx run-many -t build",
       "conventionalCommits": true
     },
     "changelog": {

@@ -20,7 +20,7 @@ import {
   commentBody,
   reaction,
   blogCategory,
-} from '../index.ts';
+} from '../src/index.ts';
 
 import {
   EMAILS,

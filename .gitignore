@@ -130,7 +130,7 @@ dist
 .pnp.*
 
 tmp/
-
+.tmp
 .vscode/
 .vscode
 

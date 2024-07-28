@@ -16,5 +16,10 @@
       "**/Thumbs.db": true,
       "**/node_modules": true,
     },
+    "vsicons.associations.folders": [
+      {"icon": "tools", "extensions": ["repo"], "format": "svg"}, 
+      {"icon": "config", "extensions": ["cfg"], "format": "svg"},
+      {"icon": "cli", "extensions": ["subcommand","subcommands"], "format": "svg"}
+    ]
   },
 }

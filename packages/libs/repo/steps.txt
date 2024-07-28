@@ -1,0 +1,4 @@
+1. package.json
+2. project tsconfig
+3. project.json
+4. base tsconfig

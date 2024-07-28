@@ -1,19 +1,24 @@
 {
   "name": "@blogapie/shared",
+  "$schema": "node_modules/nx/schemas/project-schema.json",
+
   "targets": {
     "test": {
       "executor": "nx:run-commands",
       "options": {
         "command": "npx vitest run",
         "args": [
-          "--dir={projectRoot}/src/tests",
+          "--dir={projectRoot}/tests",
           "--coverage.enabled=true",
+          "--coverage.clean=false",
           "--coverage.provider=v8",
-          "--coverage.reportsDirectory=./coverage",
-          "--coverage.clean=true",
+          "--coverage.reporter=json-summary",
+          "--coverage.reporter=text",
+          "--coverage.reportsDirectory={projectRoot}",
           "--coverage.include={projectRoot}/src/**/*.{ts,js,tsx,jsx}",
           "--coverage.exclude=**/types.ts/**",
-          "--coverage.exclude=**/tests/**"
+          "--coverage.exclude=**/tests/**",
+          "--outputFile=./coverage/custom-coverage.json"
         ]
       },
       "cache": true

@@ -1,0 +1,54 @@
+<!-- Nx project.json template -->
+{
+  "name": "@<%- projectScope %>/<%- projectName %>",
+  "targets": {
+    "tsc": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["options.outputPath"],
+      "options": {
+        "main": "<%- projectRoot %>/src/index.ts",
+        "outputPath": "<%- projectRoot %>/dist",
+        "tsConfig": "<%- projectRoot %>/tsconfig.json"
+      },
+      "cache": true
+    },
+    "test": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "npx vitest run",
+        "args": [
+          "--dir=<%- projectRoot %>/tests",
+          "--coverage.enabled=true",
+          "--coverage.clean=false",
+          "--coverage.provider=v8",
+          "--coverage.reporter=json-summary",
+          "--coverage.reporter=text",
+          "--coverage.reportsDirectory=<%- projectRoot %>/.repo",
+          "--coverage.include=<%- projectRoot %>/src/**/*.{ts,js,tsx,jsx}",
+          "--coverage.exclude=**/types.ts/**",
+          "--coverage.exclude=**/tests/**",
+        ]
+      },
+      "cache": true
+    },
+    "format": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": npx prettier <%- projectRoot %> --write --config <%- projectPrettierConfig %> 
+      }
+    },
+    "build": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "nx format <%- projectName %>",
+          "nx lint <%- projectName %>",
+          "nx test <%- projectName %>",
+          "nx tsc <%- projectName %>"
+        ],
+        "parallel": false
+      },
+      "cache": true
+    }
+  }
+}

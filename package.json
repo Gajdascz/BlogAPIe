@@ -25,6 +25,7 @@
     "@nx/eslint": "19.5.3",
     "@nx/express": "^19.5.3",
     "@nx/js": "^19.5.3",
+    "@nx/node": "19.5.3",
     "@nx/vite": "^19.5.3",
     "@nx/web": "19.5.3",
     "@swc-node/register": "~1.9.1",
@@ -58,9 +59,16 @@
     "typedoc": "^0.26.5",
     "typescript": "^5.5.3",
     "typescript-eslint": "^7.16.0",
+    "verdaccio": "^5.0.4",
     "vite": "^5.0.0",
     "vitest": "^2.0.4",
     "waex": "^0.1.4",
     "yup": "^1.4.0"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "nx": {
+    "includedScripts": []
   }
 }

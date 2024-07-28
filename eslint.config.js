@@ -1,7 +1,7 @@
 import tseslint from 'typescript-eslint';
 import eslint from '@eslint/js';
 import globals from 'globals';
-import pluginReactConfig from 'eslint-plugin-react/configs/recommended.js';
+// import pluginReactConfig from 'eslint-plugin-react/configs/recommended.js';
 import { fixupConfigRules } from '@eslint/compat';
 import prettierConfig from 'eslint-config-prettier';
 import tsdoc from 'eslint-plugin-tsdoc';
