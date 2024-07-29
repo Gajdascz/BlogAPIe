@@ -7,16 +7,6 @@
       "options": {
         "targetName": "lint"
       }
-    },
-    {
-      "plugin": "@nx/vite/plugin",
-      "options": {
-        "buildTargetName": "build",
-        "testTargetName": "test",
-        "serveTargetName": "serve",
-        "previewTargetName": "preview",
-        "serveStaticTargetName": "serve-static"
-      }
     }
   ],
   "release": {
@@ -33,7 +23,7 @@
     "git": {
       "commit": true,
       "tag": true,
-      "commitMessage": "(release): {version}"
+      "commitMessage": "chore(release): {version}"
     }
   }
 }

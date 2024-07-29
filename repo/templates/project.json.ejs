@@ -1,7 +1,32 @@
 <!-- Nx project.json template -->
+
+<%
+  const renderProperty = (key,value) => "<%=key%>": "<%=value%>"
+%>
+
 {
   "name": "@<%- projectScope %>/<%- projectName %>",
   "targets": {
+    <% if(targets.length) { %>
+      <% targets.forEach(t => { %>
+        "<%= t.name %>"
+        <%= t.executor %>
+        <% if(t.outputs) { %>
+          "outputs": <%= [t.outputs.join(', ')] %>
+        <% } %>
+        <% if(t.options) { %>
+          "options": {
+            <% options.forEach(opt => { %>
+              <% if(Array.isArray(opt.value)) { %>
+              
+              <% } %>
+              "<%= opt.name %>": "<%= opt.value %>"
+            <% }) %>
+          }
+        <% } %>
+      <% }) %>
+      "cache": <%= isCachable %>
+    <% } %>
     "tsc": {
       "executor": "@nx/js:tsc",
       "outputs": ["options.outputPath"],

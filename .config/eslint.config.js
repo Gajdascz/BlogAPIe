@@ -31,12 +31,12 @@ export default tseslint.config(
   },
   {
     name: 'typescript',
-    files: ['waex.ts', 'packages/**/*.{ts,tsx}'],
+    files: ['../packages/**/*.{ts,tsx}'],
     languageOptions: {
       parser: tseslint.parser,
       parserOptions: {
         project: true,
-        tsconfigRootDir: import.meta.dirname,
+        tsconfigRootDir: import.meta?.dirname ?? __dirname,
       },
     },
     plugins: {
@@ -50,7 +50,7 @@ export default tseslint.config(
   },
   {
     name: 'libs',
-    files: ['packages/libs/**/*.{js,ts,tsx,jsx}'],
+    files: ['../packages/libs/**/*.{js,ts,tsx,jsx}'],
     languageOptions: { globals: { ...globals.node } },
   },
 

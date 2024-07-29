@@ -23,28 +23,12 @@
     "resolveJsonModule": true,
     "esModuleInterop": true,
     "types": [],
-    "paths": {
-      "@blogapie/repo": ["packages/libs/repo/src/index.ts"],
-      "@blogapie/shared": ["packages/libs/shared/src/index.ts"]
-    }
   },
-  "include": ["packages/**"],
-  "exclude": ["node_modules"],
+  "exclude": ["node_modules", "dist","docs"],
   "references": [
-    {
-      "path": "./packages/server/tsconfig.json"
-    },
-    {
-      "path": "./packages/client/reader/tsconfig.json"
-    },
-    {
-      "path": "./packages/client/writer/tsconfig.json"
-    },
-    {
-      "path": "./packages/libs/shared/tsconfig.json"
-    },
-    {
-      "path": "./packages/libs/repo/tsconfig.json"
-    }
+    {"path": "./packages/server/tsconfig.json"},
+    {"path": "./packages/client/reader/tsconfig.json"},
+    {"path": "./packages/client/writer/tsconfig.json"},
+    {"path": "./packages/libs/shared/tsconfig.json"},
   ]
 }

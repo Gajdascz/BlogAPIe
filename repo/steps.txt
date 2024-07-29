@@ -1,0 +1,7 @@
+type: client or library
+package.json
+project tsconfig
+project.json
+base tsconfig
+license
+readme
