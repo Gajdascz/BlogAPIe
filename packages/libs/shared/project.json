@@ -5,7 +5,7 @@
     "test": {
       "executor": "nx:run-commands",
       "options": {
-        "command": "npx vitest run",
+        "command": "vitest run",
         "args": [
           "--dir={projectRoot}/tests",
           "--coverage.enabled=true",
@@ -22,7 +22,12 @@
       },
       "cache": true
     },
-    "format": {},
+    "format": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": ""  
+      }
+    },
     "lint": {},
     "tsc": {},
     "typedoc": {},
