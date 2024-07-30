@@ -11,7 +11,11 @@
   ],
   "release": {
     "projectsRelationship": "independent",
-    "projects": ["packages/libs/*", "packages/client/*", "packages/server"],
+    "projects": [
+      "packages/libs/*",
+      "packages/client/*",
+      "packages/server"
+    ],
     "releaseTagPattern": "{projectName}@{version}",
     "version": {
       "preVersionCommand": "npx nx run-many -t build",
@@ -23,7 +27,7 @@
     "git": {
       "commit": true,
       "tag": true,
-      "commitMessage": "chore(release): {version}"
+      "commitMessage": "(release): {version}"
     }
   }
 }

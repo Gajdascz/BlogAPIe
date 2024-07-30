@@ -1,4 +1,6 @@
 {
+  "name": "@blogapie/server",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "targets": {
     "format": {},
     "lint": {},
