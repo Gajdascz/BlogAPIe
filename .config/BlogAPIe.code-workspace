@@ -1,22 +1,9 @@
 {
   "folders": [
-	{
-		"name": "root",
-		"path": ".."
-	},
-	{
-		"name": "server",
-		"path": "../packages/server"
-	},
-	{
-		"name": "client",
-		"path": "../packages/client"
-	},
-	{
-		"name": "libs",
-		"path": "../packages/libs"
-	}
-],
+    {
+      "path": ".."
+    }
+  ],
   "settings": {
     "typescript.tsdk": "node_modules/typescript/lib",
     "files.exclude": {
